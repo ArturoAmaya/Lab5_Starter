@@ -8,7 +8,7 @@ function init() {
   // Horn selector
   /*When you select a horn from the drop down menu, the following should occur:
   The correct image should display
-  The correct audio sound file should be set*/
+  TODO The correct audio sound file should be set*/
 
   // get the horn selector html element into the script
   const hornSelect = document.getElementById("horn-select")
@@ -24,6 +24,7 @@ function init() {
 
     // it seems hornSelect.value will correctly present the active/chosen value of the select element.
     // https://stackoverflow.com/questions/3301688/how-do-you-get-the-currently-selected-option-in-a-select-via-javascript
+    // Then just switch on the select value and change to the appropriate image.
     switch (hornSelect.value){
       case "air-horn":
         images[0].src = "./assets/images/air-horn.svg";
@@ -39,7 +40,31 @@ function init() {
     }
     
   }
-  // Volume Slider
+
+  // Volume Slider:
+  /*When you change the volume on the slider, the following should occur:
+  At zero volume, the mute icon (level 0) should be displayed
+  From 1 to < 33 volume the first volume level should be displayed
+  From 33 to < 67 volume the second volume level should be displayed
+  From 67 and up the third volume level should be displayed
+  The correct volume icon should be set
+  The corresponding volume should be set for the audio element (note: this element’s volume is not out of 100)*/
+  const volumeSlider = document.querySelector("input");
+  // console.log(volumeSlider);
+  volumeSlider.addEventListener('input', updateVolSlide);
+
+  function updateVolSlide () {
+    if (volumeSlider.value == 0){
+      images[1].src = "./assets/icons/volume-level-0.svg";
+    } else if (volumeSlider.value >= 1 && volumeSlider.value<33){
+      images[1].src = "./assets/icons/volume-level-1.svg";
+    } else if (volumeSlider.value>=33 && volumeSlider.value<67){
+      images[1].src = "./assets/icons/volume-level-2.svg";
+    } else if (volumeSlider.value>=67) {
+      images[1].src = "./assets/icons/volume-level-3.svg";
+    }
+  }
+
 
   // Play sound
 }
