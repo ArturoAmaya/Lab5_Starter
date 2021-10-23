@@ -8,13 +8,15 @@ function init() {
   // Horn selector
   /*When you select a horn from the drop down menu, the following should occur:
   The correct image should display
-  TODO The correct audio sound file should be set*/
+  The correct audio sound file should be set*/
 
   // get the horn selector html element into the script
   const hornSelect = document.getElementById("horn-select")
   // get an array with all the images in the doc. The first is the horn and the second is the volume
   const images = document.querySelectorAll('img');
-  
+
+  const audio = document.querySelector('audio');
+  console.log(audio);
   // add a listener to the horn selector - when its value updates run the fn updateHorn.
   hornSelect.addEventListener('input', updateHorn);
 
@@ -28,16 +30,20 @@ function init() {
     switch (hornSelect.value){
       case "air-horn":
         images[0].src = "./assets/images/air-horn.svg";
+        audio.src = "./assets/audio/air-horn.mp3"
         break;
       case "car-horn":
         images[0].src = "./assets/images/car-horn.svg";
+        audio.src="./assets/audio/car-horn.mp3";
         break;
       case "party-horn":
         images[0].src = "./assets/images/party-horn.svg";
+        audio.src="./assets/audio/party-horn.mp3";
         break;
       default:
         images[0].src  = "./assets/images/no-image.png";
     }
+
     
   }
 
@@ -48,7 +54,7 @@ function init() {
   From 33 to < 67 volume the second volume level should be displayed
   From 67 and up the third volume level should be displayed
   The correct volume icon should be set
-  The corresponding volume should be set for the audio element (note: this element’s volume is not out of 100)*/
+  TODO The corresponding volume should be set for the audio element (note: this element’s volume is not out of 100)*/
   const volumeSlider = document.querySelector("input");
   // console.log(volumeSlider);
   volumeSlider.addEventListener('input', updateVolSlide);
