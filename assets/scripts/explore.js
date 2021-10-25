@@ -8,15 +8,15 @@ function init() {
   const face = document.querySelector("img");
   
 
-  window.addEventListener('load', function(){
-    // populate them options
-    for (let i =0; i<voiceList.length;i++){
-      let newOption = document.createElement('option');
-      newOption.textContent = voiceList[i].name + ' | ' + voiceList[i].lang;
-      newOption.setAttribute('lang', voiceList[i].lang);
-      dropDown.appendChild(newOption);
-    }
-  });
+  // populate them options
+  for (let i =0; i<voiceList.length;i++){
+    let newOption = document.createElement('option');
+    console.log('option time');
+    console.log(voiceList[i]);
+    newOption.textContent = voiceList[i].name + ' | ' + voiceList[i].lang;
+    newOption.setAttribute('lang', voiceList[i].lang);
+    dropDown.appendChild(newOption);
+  }
 
   // button time!
   const button = document.querySelector("button");
