@@ -16,7 +16,7 @@ function init() {
       newOption.setAttribute('lang', voiceList[i].lang);
       dropDown.appendChild(newOption);
     }
-  })
+  });
 
   // button time!
   const button = document.querySelector("button");
