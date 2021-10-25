@@ -6,7 +6,7 @@ function init() {
   const dropDown = document.getElementById("voice-select");
   const voiceList = window.speechSynthesis.getVoices();
   const face = document.querySelector("img");
-  
+  console.log('u');
 
   // populate them options
   for (let i =0; i<voiceList.length;i++){
