@@ -3,19 +3,30 @@
 window.addEventListener('DOMContentLoaded', init);
 
 function init() {
+
+  let synth = window.speechSynthesis;
   const dropDown = document.getElementById("voice-select");
-  const voiceList = window.speechSynthesis.getVoices();
+  const voiceList = [];
+  
+
+  
+  synth.addEventListener('voiceschanged', function(){
+    voiceList = synth.getVoices();
+
+    for (let i =0; i<voiceList.length;i++){
+      let newOption = document.createElement('option');
+      console.log(voiceList[i]);
+      newOption.textContent = voiceList[i].name + ' | ' + voiceList[i].lang;
+      newOption.setAttribute('lang', voiceList[i].lang);
+      dropDown.appendChild(newOption);
+    }
+  
+  });
+  
   const face = document.querySelector("img");
 
   // populate them options
-  for (let i =0; i<voiceList.length;i++){
-    let newOption = document.createElement('option');
-    console.log(voiceList[i]);
-    newOption.textContent = voiceList[i].name + ' | ' + voiceList[i].lang;
-    newOption.setAttribute('lang', voiceList[i].lang);
-    dropDown.appendChild(newOption);
-  }
-
+  
   // button time!
   const button = document.querySelector("button");
   const text = document.getElementById("text-to-speak");
