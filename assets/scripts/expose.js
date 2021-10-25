@@ -15,8 +15,7 @@ function init() {
   // get an array with all the images in the doc. The first is the horn and the second is the volume
   const images = document.querySelectorAll('img');
 
-  const audio = document.querySelector('audio');
-  console.log(audio);
+  
   // add a listener to the horn selector - when its value updates run the fn updateHorn.
   hornSelect.addEventListener('input', updateHorn);
 
@@ -56,6 +55,8 @@ function init() {
   The correct volume icon should be set
   TODO The corresponding volume should be set for the audio element (note: this element’s volume is not out of 100)*/
   const volumeSlider = document.querySelector("input");
+  const audio = document.querySelector('audio');
+  console.log(audio);
   // console.log(volumeSlider);
   volumeSlider.addEventListener('input', updateVolSlide);
 
@@ -69,9 +70,24 @@ function init() {
     } else if (volumeSlider.value>=67) {
       images[1].src = "./assets/icons/volume-level-3.svg";
     }
+    audio.volume = volumeSlider.value / 100;
+    //console.log(audio.volume);
   }
 
 
-  // Play sound
+  const playSound = document.querySelector('button');
+  const jsConfetti = new JSConfetti();
+
+  playSound.addEventListener('click', buttonAction);
+
+  function buttonAction (){
+    console.log(audio.src);
+    if (audio.src != ""){
+      audio.play();
+      if (hornSelect.value == "party-horn" && volumeSlider.value != 0){
+          jsConfetti.addConfetti({emojis:['🦄'], confettiNumber: 500});
+      }
+    }
+  }
 }
 
